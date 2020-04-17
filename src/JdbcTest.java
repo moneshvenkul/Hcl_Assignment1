@@ -61,16 +61,18 @@ public class JdbcTest {
 		        			"2. TN Total\n" + 
 		        			"3. TN Male Total\n"+"4. TN Female Total\n"+"5. AP Total\n" + 
 		        			"6. AP Male Total\n"+"7. AP Female Total\n"+"8. Kerala Total\n" + 
-		        			"9. Kerala Male Total\n"+"10. Kerala Female Total\n"+"Choose your option:");
-		        	Scanner scan = new Scanner(System.in);
-		        	int num = scan.nextInt();
+		        			"9. Kerala Male Total\n"+"10. Kerala Female Total\n"+"11. Exit\n"+"Choose your option:");
 		        	
 		        	String sql2="select sum(male)+sum(female) as Total FROM corona where state='Tamilnadu'" ;
 	        		String sql3="select sum(male)+sum(female) as Total FROM corona where state='Ap'" ;
 	        		String sql4="select sum(male)+sum(female) as Total FROM corona where state='Kerala'" ;
 	        		
-	        	
-	        	
+	        	boolean flag = true;
+	        	while(flag) {
+	        		
+	        		Scanner scan = new Scanner(System.in);
+		        	int num = scan.nextInt();
+		        	
 		        	switch(num) {
 		        	  case 1:
 		        		
@@ -159,13 +161,18 @@ public class JdbcTest {
 			        			System.out.println("The Toatal No.of Female cases in Tamilnadu is:"+ myRs.getString("Total"));
 			        			}
 		        	    break;
+		        	    
+		        	  case 11:
+		        		  System.out.println("You will be exited now");
+		        		  flag = false;
+		        		  break;
 	        	    
 		        	    
 		        	  default:
 		        	    System.out.println("Please check your choice");
 		        		  break;
 		        	}
-		        	
+	        	}
 			  }
 			  else {
 				  System.out.println("Database is empty, so creating database for you..."); //prints this message if your resultset is empty
